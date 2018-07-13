@@ -1,3 +1,19 @@
+require 'rails_helper'
+
+describe 'as a user visiting book_path' do
+  it 'can see a single book' do
+    book_1 = Book.create!(title: 'book number 1')
+    book_2 = Book.create!(title: 'book number 2')
+
+    visit book_path(book_1)
+
+    expect(page).to have_content(book_1.title)
+    expect(page).to_not have_content(book_2.title)
+  end
+end
+
+
+
 # As a Visitor,
 # When I visit a book show page,
 # I also see a rating that each user gave the book as part of their review.
